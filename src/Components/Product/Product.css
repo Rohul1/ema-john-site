@@ -6,7 +6,10 @@
     width: 286px;
     height: 286px;
 }
-/* .product-name{
+.product-name{
     font-family: 'Lato';
     font-style: normal;
-} */
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+}
