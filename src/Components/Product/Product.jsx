@@ -6,6 +6,7 @@ const Product = (props) => {
     return (
         <div className='product'>
            <img src={img} alt=''></img>
+           <p className='product-name'>{name}</p>
         </div>
     );
 };
