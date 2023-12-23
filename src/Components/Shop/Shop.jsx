@@ -12,18 +12,31 @@ const Shop = () => {
     
 
     useEffect(()=>{
+        // console.log('product load before fetch')
         fetch("products.json")
         .then(res => res.json())
-        .then(data => setProducts(data))
+        .then(data => {
+            setProducts(data);
+            // console.log('product loaded')
+        })
     },[])
 
     useEffect(()=>{
+        console.log('local storage first line', products)
         const storedCart = getStoredCart();
+        const saveCart = [];
         for(const id in storedCart){
            const addedProduct = products.find(product=> product.id ==id);
-           console.log(addedProduct);
+           if(addedProduct){
+            const quantity = storedCart[id];
+            addedProduct.quantity = quantity;
+            saveCart.push(addedProduct);
+           }
+           
         }
-    },[])
+        setCart(saveCart);
+        // console.log('local storage finished')
+    },[products])
     const handleAddTocart = (product) =>{
         // console.log(product)
 
