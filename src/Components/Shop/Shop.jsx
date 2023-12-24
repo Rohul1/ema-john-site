@@ -36,12 +36,22 @@ const Shop = () => {
         setCart(saveCart);
         // console.log('local storage finished')
     },[products])
-    const handleAddTocart = (product) =>{
+    const handleAddTocart = (selectProduct) =>{
+        let newCart = [];
         // console.log(product)
-
-        const newCart = [...cart, product];
+const exists = cart.find(product => product.id === selectProduct.id);
+if(!exists){
+    selectProduct.quantity = 1;
+    newCart = [...cart, selectProduct];
+}
+else{
+    const rest = cart.filter(product => product.id !== selectProduct.id);
+    exists.quantity = exists.quantity + 1;
+    newCart = [...rest, exists]
+}
+         
         setCart(newCart);
-        addToDb(product.id)
+        addToDb(selectProduct.id)
     }
     return (
         <div className='shop-container'>
