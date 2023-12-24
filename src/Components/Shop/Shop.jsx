@@ -12,12 +12,11 @@ const Shop = () => {
     
 
     useEffect(()=>{
-        // console.log('product load before fetch')
+        
         fetch("products.json")
         .then(res => res.json())
-        .then(data => {
-            setProducts(data);
-            // console.log('product loaded')
+        .then(data => {setProducts(data);
+            
         })
     },[])
 
@@ -26,7 +25,7 @@ const Shop = () => {
         const storedCart = getStoredCart();
         const saveCart = [];
         for(const id in storedCart){
-           const addedProduct = products.find(product=> product.id ==id);
+           const addedProduct = products.find(product=> product.id ===id);
            if(addedProduct){
             const quantity = storedCart[id];
             addedProduct.quantity = quantity;
